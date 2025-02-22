@@ -1,23 +1,19 @@
-# bruxy
-[![Publish Docker image as latest](https://github.com/reon04/bruxy/actions/workflows/docker-publish.yml/badge.svg)](https://github.com/reon04/bruxy/actions/workflows/docker-publish.yml)
+# boonxy
+[![Publish Docker image as latest](https://github.com/muller2002/boonxy/actions/workflows/docker-publish.yml/badge.svg)](https://github.com/muller2002/boonxy/actions/workflows/docker-publish.yml)
 
-bruxy, the BRU proxy. A docker image that proxies the Ruhr University Bochum (RUB) website and performs string replacements in the response.
+boonxy, the Boon proxy. A docker image that proxies the Uni Bonn website and performs string replacements in the response.
 
-
-## Releases and Deployment
-
-Get the latest release from [Docker Hub](https://hub.docker.com/r/reon04/bruxy).
-
-
-### Envirionment Variables
+## Envirionment Variables
 
 | Env | Default | Description |
 | --- | --- | --- |
-| SHORT_DOMAIN | rub.de | short domain under which the bruxy will be reachable (e.g. bru.fyi) |
-| LONG_DOMAIN | ruhr-uni-bochum.de | long domain under which the bruxy will be reachable (e.g. bochum-ruhr-uni.de) |
-| DNS_RESOLVER | 1.1.1.1 | optional IP address of a local DNS resolver, by default a Cloudflare DNS server will be used
-
+| DOMAIN | uni-bonn.de | short domain under which the boonxy will be reachable (e.g. uni-boon.de) |
+| DNS_RESOLVER | 1.1.1.1 | optional IP address of a local DNS resolver, by default a Cloudflare DNS server will be used |
 
 ## LICENSE
 
 This repository is licensed under [MIT](LICENSE).
+
+## Thanks
+
+This repository is based on the [brukxy](https://github.com/reon04/bruxy) from people from the Bochum-Ruhr University. Thanks for the great work!

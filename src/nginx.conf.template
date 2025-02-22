@@ -22,54 +22,24 @@ http {
 
   server {
     listen       80;
-    server_name  ~^(?<subdomain>(?:[a-zA-Z0-9-~_]+\.)*)?replace_label_short_domain_regex?$;
+    server_name  ~^(?<subdomain>(?:[a-zA-Z0-9-~_]+\.)*)?replace_label_domain_regex?$;
 
     location / {
       proxy_http_version 1.1;
       proxy_hide_header Access-Control-Allow-Origin;
       add_header Access-Control-Allow-Origin "*" always;
-      proxy_set_header Host ${subdomain}rub.de;
+      proxy_set_header Host ${subdomain}uni-bonn.de;
       proxy_set_header User-Agent $http_user_agent;
-      proxy_set_header Referer "$http_x_forwarded_proto://ruhr-uni-bochum.de/";
+      proxy_set_header Referer "$http_x_forwarded_proto://uni-bonn.de/";
       proxy_set_header Accept-Encoding "";
       proxy_set_header X-Forwarded-Scheme "";
       proxy_set_header X-Forwarded-Proto "";
       proxy_set_header X-Forwarded-For "";
       proxy_ssl_server_name on;
-      proxy_pass $http_x_forwarded_proto://${subdomain}rub.de;
-      proxy_redirect ~http(s)?:\/\/((?:[a-zA-Z0-9-~_]+\.)*)rub\.de(.*) http$1://$2?replace_label_short_domain?$3;
-      proxy_redirect ~http(s)?:\/\/((?:[a-zA-Z0-9-~_]+\.)*)ruhr-uni-bochum\.de(.*) http$1://$2?replace_label_long_domain?$3;
+      proxy_pass $http_x_forwarded_proto://${subdomain}uni-bonn.de;
+      proxy_redirect ~http(s)?:\/\/((?:[a-zA-Z0-9-~_]+\.)*)uni-bonn\.de(.*) http$1://$2?replace_label_domain?$3;
       subs_filter_types text/plain text/css text/javascript application/json application/ld+json;
-      subs_filter "http(s)?:(\/\/|\\\/\\\/)((?:[a-zA-Z0-9-~_]+\.)*)rub\.de" "http$1:$2$3?replace_label_short_domain?" r;
-      subs_filter "http(s)?:(\/\/|\\\/\\\/)((?:[a-zA-Z0-9-~_]+\.)*)ruhr-uni-bochum\.de" "http$1:$2$3?replace_label_long_domain?" r;
-      ?replace_label_subs?
-    }
-
-    ?replace_label_res_subs?
-  }
-
-  server {
-    listen       80;
-    server_name  ~^(?<subdomain>(?:[a-zA-Z0-9-~_]+\.)*)?replace_label_long_domain_regex?$;
-
-    location / {
-      proxy_http_version 1.1;
-      proxy_hide_header Access-Control-Allow-Origin;
-      add_header Access-Control-Allow-Origin "*" always;
-      proxy_set_header Host ${subdomain}ruhr-uni-bochum.de;
-      proxy_set_header User-Agent $http_user_agent;
-      proxy_set_header Referer "$http_x_forwarded_proto://ruhr-uni-bochum.de/";
-      proxy_set_header Accept-Encoding "";
-      proxy_set_header X-Forwarded-Scheme "";
-      proxy_set_header X-Forwarded-Proto "";
-      proxy_set_header X-Forwarded-For "";
-      proxy_ssl_server_name on;
-      proxy_pass $http_x_forwarded_proto://${subdomain}ruhr-uni-bochum.de;
-      proxy_redirect ~http(s)?:\/\/((?:[a-zA-Z0-9-~_]+\.)*)rub\.de(.*) http$1://$2?replace_label_short_domain?$3;
-      proxy_redirect ~http(s)?:\/\/((?:[a-zA-Z0-9-~_]+\.)*)ruhr-uni-bochum\.de(.*) http$1://$2?replace_label_long_domain?$3;
-      subs_filter_types text/plain text/css text/javascript application/json application/ld+json;
-      subs_filter "http(s)?:(\/\/|\\\/\\\/)((?:[a-zA-Z0-9-~_]+\.)*)rub\.de" "http$1:$2$3?replace_label_short_domain?" r;
-      subs_filter "http(s)?:(\/\/|\\\/\\\/)((?:[a-zA-Z0-9-~_]+\.)*)ruhr-uni-bochum\.de" "http$1:$2$3?replace_label_long_domain?" r;
+      subs_filter "http(s)?:\/\/(?:[a-zA-Z0-9-~_]+\.)*uni-bonn\.de" "http$1://$2?replace_label_domain?" r;
       ?replace_label_subs?
     }
 

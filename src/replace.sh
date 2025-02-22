@@ -6,16 +6,11 @@ dns_resolver=${DNS_RESOLVER:-1.1.1.1}
 sed -i -e "s/?replace_label_dns_resolver?/$dns_resolver/g" $SCRIPTPATH/nginx.conf
 
 # insert domain name to listen on
-short=${SHORT_DOMAIN:-rub.de}
-long=${LONG_DOMAIN:-ruhr-uni-bochum.de}
-shortr=$(echo "$short" | sed "s/\./\\\\\\\\./g")
-longr=$(echo "$long" | sed "s/\./\\\\\\\\./g")
-shortr=$(echo "$shortr" | sed "s/:[0-9]*//g")
-longr=$(echo "$longr" | sed "s/:[0-9]*//g")
-sed -i -e "s/?replace_label_short_domain?/$short/g" $SCRIPTPATH/nginx.conf
-sed -i -e "s/?replace_label_short_domain_regex?/$shortr/g" $SCRIPTPATH/nginx.conf
-sed -i -e "s/?replace_label_long_domain?/$long/g" $SCRIPTPATH/nginx.conf
-sed -i -e "s/?replace_label_long_domain_regex?/$longr/g" $SCRIPTPATH/nginx.conf
+domain=${DOMAIN:-uni-bonn.de}
+domainr=$(echo "$domain" | sed "s/\./\\\\\\\\./g")
+domainr=$(echo "$domainr" | sed "s/:[0-9]*//g")
+sed -i -e "s/?replace_label_short_domain?/$domain/g" $SCRIPTPATH/nginx.conf
+sed -i -e "s/?replace_label_short_domain_regex?/$domainr/g" $SCRIPTPATH/nginx.conf
 
 # insert string substitutions
 while IFS="" read -r p || [ -n "$p" ]
