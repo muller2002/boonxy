@@ -29,5 +29,3 @@ jobs:
           platforms: linux/amd64
           push: false
           tags: ${{ github.repository }}
-          cache-from: type=registry,ref=${{ github.repository }}:buildcache
-          cache-to: type=registry,ref=${{ github.repository }}:buildcache,mode=max
