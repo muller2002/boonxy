@@ -16,4 +16,4 @@ This repository is licensed under [MIT](LICENSE).
 
 ## Thanks
 
-This repository is based on the [brukxy](https://github.com/reon04/bruxy) from people from the Bochum-Ruhr University. Thanks for the great work!
+This repository is based on the [bruxy](https://github.com/reon04/bruxy) from people from the Bochum-Ruhr University. Thanks for the great work!
