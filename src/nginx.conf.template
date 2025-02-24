@@ -39,7 +39,7 @@ http {
       proxy_pass $http_x_forwarded_proto://${subdomain}uni-bonn.de;
       proxy_redirect ~http(s)?:\/\/((?:[a-zA-Z0-9-~_]+\.)*)uni-bonn\.de(.*) http$1://$2?replace_label_domain?$3;
       subs_filter_types text/plain text/css text/javascript application/json application/ld+json;
-      subs_filter "http(s)?:\/\/(?:[a-zA-Z0-9-~_]+\.)*uni-bonn\.de" "http$1://$2?replace_label_domain?" r;
+      subs_filter "http(s)?:(\/\/|\\\/\\\/)((?:[a-zA-Z0-9-~_]+\.)*)uni-bonn\.de" "http$1://$2?replace_label_domain?" r;
       ?replace_label_subs?
     }
 
