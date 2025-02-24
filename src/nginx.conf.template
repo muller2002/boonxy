@@ -22,7 +22,7 @@ http {
 
   server {
     listen       80;
-    server_name  ~^(?<subdomain>(?:[a-zA-Z0-9-~_]+\.)*)?replace_label_domain_regex?$;
+    server_name  _;
 
     location / {
       proxy_http_version 1.1;
@@ -44,13 +44,6 @@ http {
     }
 
     ?replace_label_res_subs?
-  }
-
-  server {
-    listen      80 default_server;
-    server_name _;
-    
-    return      444; #Connection closed without response
   }
 }
 
